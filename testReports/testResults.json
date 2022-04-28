@@ -1,0 +1,181 @@
+{
+  "stats": {
+    "suites": 3,
+    "tests": 3,
+    "passes": 3,
+    "pending": 0,
+    "failures": 0,
+    "start": "2022-04-28T12:02:53.866Z",
+    "end": "2022-04-28T12:03:17.134Z",
+    "duration": 23268,
+    "testsRegistered": 3,
+    "passPercent": 100,
+    "pendingPercent": 0,
+    "other": 0,
+    "hasOther": false,
+    "skipped": 0,
+    "hasSkipped": false
+  },
+  "results": [
+    {
+      "uuid": "a8628685-b803-44a6-b8a6-b2a81a831e55",
+      "title": "",
+      "fullFile": "",
+      "file": "",
+      "beforeHooks": [],
+      "afterHooks": [],
+      "tests": [],
+      "suites": [
+        {
+          "uuid": "10540405-8fb1-4fe6-84fd-96d9a2e9416b",
+          "title": "Planit Testing KAYA",
+          "fullFile": "C:\\Users\\navya\\Desktop\\PlanitTesting_Kaya\\test\\first_test.js",
+          "file": "\\test\\first_test.js",
+          "beforeHooks": [],
+          "afterHooks": [],
+          "tests": [
+            {
+              "title": "Test case 1:",
+              "fullTitle": "Planit Testing KAYA Test case 1:",
+              "timedOut": null,
+              "duration": 9566,
+              "state": "passed",
+              "speed": "slow",
+              "pass": true,
+              "fail": false,
+              "pending": false,
+              "context": null,
+              "code": "//launching the browser\nlet driver = await new Builder().forBrowser(\"firefox\").build();\n//openning to the *Target website\nawait driver.get(\"http://jupiter.cloud.planittesting.com/\");\n//From home page navigating to *Contact page\nawait driver.findElement(By.xpath(\"//*[@id='nav-contact']\")).click();\n//Clicking on *Submit button\nconst delay = ms => new Promise(resolve => setTimeout(resolve, ms))     /////////////////  ----------------WAIT\nawait delay(1000) /// waiting 1 second.\nawait driver.findElement(By.linkText(\"Submit\")).click();                 \n//----Validating the *Alert message at top\nlet exp   = \"We welcome your feedback - but we won't get it unless you complete the form correctly.\"\nlet act = await driver.findElement(By.css(\"#header-message > div\")).getText();                  //console.log(expected+\" \"+actual);\nassert.strictEqual(act, exp); //act.should.equal(exp); syntaxt for chai asserion\n//Validating *Firstname error message\nlet exp2 = \"Forename is required\";\nlet act2 = await driver.findElement(By.xpath(\"//*[@id='forename-err']\")).getText();\nassert.strictEqual(act2, exp2); //act2.should.equal(exp2); syntaxt for chai asserion   \n//Validating *Email errror message\nlet exp3 = \"Email is required\";\nlet act3 = await driver.findElement(By.xpath(\"//*[@id='email-err']\")).getText();\nact3.should.equal(exp3);\n//Validating *Message errror message\nlet exp4 = \"Message is required\";\nlet act4 = await driver.findElement(By.xpath(\"//*[@id='message-err']\")).getText();\nact4.should.equal(exp4);\n//----POPULATING MANDATORY FIELDS   \nawait driver.findElement(By.id(\"forename\")).sendKeys(\"Muhammet\");\nawait driver.actions().sendKeys(Key.chord(Key.TAB, Key.TAB,\"john.example@planit.net.au\")).perform();\nawait driver.actions().sendKeys(Key.chord(Key.TAB, Key.TAB,\"text area comment for Test 1\")).perform();\n//----VALIDATING TOP ALERT MESSAGE HAS BEEN UPDATED\nlet exp5   = \"We welcome your feedback - tell it how it is.\"\nlet act5 = await driver.findElement(By.css(\"#header-message > div\")).getText();\nassert.strictEqual(act5, exp5);\n//----VALIDATING ERRORS ARE GONE\nlet forenameGone =   (await driver.findElements(By.xpath(\"//*[@id='forename-err']\"))).length; \nlet emailGone    =   (await driver.findElements(By.xpath(\"//*[@id='email-err']\"))).length;\nlet messageGone  =   (await driver.findElements(By.xpath(\"//*[@id='message-err']\"))).length; //console.log(forenameGone +'/'+ EmailGone +'/'+ MessageGone);\n//!!!!so if the number of elements is '0' it means the error message is gone\nforenameGone.should.equal(0);\nemailGone.should.equal(0);\nmessageGone.should.equal(0);\ndriver.quit();",
+              "err": {},
+              "uuid": "4fd9fb18-6f79-4acd-af5b-cf5fde4c8ca3",
+              "parentUUID": null,
+              "isHook": false,
+              "skipped": false
+            }
+          ],
+          "suites": [],
+          "passes": [
+            "4fd9fb18-6f79-4acd-af5b-cf5fde4c8ca3"
+          ],
+          "failures": [],
+          "pending": [],
+          "skipped": [],
+          "duration": 9566,
+          "root": false,
+          "rootEmpty": false,
+          "_timeout": null
+        },
+        {
+          "uuid": "b059f5ad-133e-4747-b03b-12dc13345253",
+          "title": "Planit Testing KAYA",
+          "fullFile": "C:\\Users\\navya\\Desktop\\PlanitTesting_Kaya\\test\\third_test.js",
+          "file": "\\test\\third_test.js",
+          "beforeHooks": [],
+          "afterHooks": [],
+          "tests": [
+            {
+              "title": "Test case 3:",
+              "fullTitle": "Planit Testing KAYA Test case 3:",
+              "timedOut": null,
+              "duration": 13343,
+              "state": "passed",
+              "speed": "slow",
+              "pass": true,
+              "fail": false,
+              "pending": false,
+              "context": null,
+              "code": "//launching the browser\nlet driver = await new Builder().forBrowser(\"firefox\").build();\n//openning to the *Target website\nawait driver.get(\"http://jupiter.cloud.planittesting.com/\");\n//NAVIGATING TO SHOP PAGE\nawait driver.findElement(By.xpath(\"//*[@id='nav-shop']/a\")).click();\nconst delay = ms => new Promise(resolve => setTimeout(resolve, ms)) /////////////////  ----------------WAIT\nawait delay(1000) /// waiting 1 second.\n//BUYING 2 STUFFED FROGS\ntarget1 = 2;   // Number of click for ***Stuffed Frog \nfor(i=0;i<target1;i++){\n    await driver.findElement(By.xpath(\"//li[2]/div/p/a\")).click();\n}\n//BUYING 5 FLUFFY BUNNIES\ntarget2 = 5;   // Number of click for ***Fluffy Bunny \nfor(i=0;i<target2;i++){\n    await driver.findElement(By.xpath(\"//*[@id='product-4']/div/p/a\")).click();\n}\n//BUYING 3 VALANTINE BEARS\ntarget3 = 3   ;   // Number of click for ***Valentine Bear\nfor(i=0;i<target3;i++){\n    await driver.findElement(By.xpath(\"//*[@id='product-7']/div/p/a\")).click();\n}\n//Assigning the prices of each product to variables for verification on the **Next(CART) page\nconst price1 = await driver.findElement(By.xpath(\"//*[@id='product-2']/div/p/span\")).getText();  //price of ***Stuffed Frog\nconst price2 = await driver.findElement(By.xpath(\"//*[@id='product-4']/div/p/span\")).getText();  //price of ***Fluffy Bunny\nconst price3 = await driver.findElement(By.xpath(\"//*[@id='product-7']/div/p/span\")).getText();  //price of ***Valentine Bear\n                                                        //console.log(price1+' '+price2+' '+price3);\n//NAVIGATING TO CART PAGE\nawait driver.findElement(By.xpath(\"//*[@id='nav-cart']/a\")).click();\nconst delay2 = ms => new Promise(resolve => setTimeout(resolve, ms)) /////////////////  ----------------WAIT\nawait delay2(1000) /// waiting 1 second.\n//LOCATING THE PRICE OF EACH PRODUCT ON CART PAGE\nconst new_price1 = await driver.findElement(By.xpath(\"//tbody/tr[1]/td[2]\")).getText();  //price of ***Stuffed Frog\nconst new_price2 = await driver.findElement(By.xpath(\"//tbody/tr[2]/td[2]\")).getText();  //price of ***Fluffy Bunny\nconst new_price3 = await driver.findElement(By.xpath(\"//tbody/tr[3]/td[2]\")).getText();  //price of ***Valentine Bear\n                                                       // console.log(new_price1+' '+new_price2+' '+new_price3);\n//VERIFYING THE PRICE OF EACH PRODUCT\nassert.strictEqual(price1, new_price1);\nassert.strictEqual(price2, new_price2);\nassert.strictEqual(price3, new_price3);\n//EXPECTED SUBTOTAL FOR EACH PRODUCT\nconst subtotal_exp1 =\"$\" + (price1.substring(1))*2;       \nconst subtotal_exp2 =\"$\" + (price2.substring(1))*5;\nconst subtotal_exp3 =\"$\" + (price3.substring(1))*3;\n                                                        //console.log(subtotal_exp1+' '+subtotal_exp2+' '+subtotal_exp3);\n\n//ACTUAL SUBTOTAL FOR EACH PRODUCT\nconst subtotal_act1 = await driver.findElement(By.xpath(\"//tbody/tr[1]/td[4]\")).getText();  //subtotal of ***Stuffed Frog\nconst subtotal_act2 = await driver.findElement(By.xpath(\"//tbody/tr[2]/td[4]\")).getText();  //subtotal of ***Fluffy Bunny\nconst subtotal_act3 = await driver.findElement(By.xpath(\"//tbody/tr[3]/td[4]\")).getText();  //subtotal of ***Valentine Bear\n                                                        //console.log(subtotal_act1+' '+subtotal_act2+' '+subtotal_act3);\n\n//VERIFYING THE SUBTOTAL OF EACH PRODUCT\nassert.strictEqual(subtotal_exp1,subtotal_act1);\nassert.strictEqual(subtotal_exp2,subtotal_act2);\nassert.strictEqual(subtotal_exp3,subtotal_act3);\n//VERIFYING THE TOTAL\nconst total_exp = \"Total: \" + ((price1.substring(1))*2 + (price2.substring(1))*5 + (price3.substring(1))*3);\nconst total_act = await driver.findElement(By.xpath(\"//tfoot/tr[1]/td/strong\")).getText();\nassert.strictEqual(total_exp,total_act);\n                                                        //console.log(total_exp);   console.log(total_act);\n     \ndriver.quit();",
+              "err": {},
+              "uuid": "92c01256-af31-46b5-b615-f01358a4c74a",
+              "parentUUID": null,
+              "isHook": false,
+              "skipped": false
+            }
+          ],
+          "suites": [],
+          "passes": [
+            "92c01256-af31-46b5-b615-f01358a4c74a"
+          ],
+          "failures": [],
+          "pending": [],
+          "skipped": [],
+          "duration": 13343,
+          "root": false,
+          "rootEmpty": false,
+          "_timeout": null
+        },
+        {
+          "uuid": "c99ed361-c6d6-43d7-aa00-449f5f1bba3b",
+          "title": "Planit Testing KAYA",
+          "fullFile": "C:\\Users\\navya\\Desktop\\PlanitTesting_Kaya\\test\\second_test.js",
+          "file": "\\test\\second_test.js",
+          "beforeHooks": [],
+          "afterHooks": [],
+          "tests": [
+            {
+              "title": "Test case 2:",
+              "fullTitle": "Planit Testing KAYA Test case 2:",
+              "timedOut": null,
+              "duration": 22747,
+              "state": "passed",
+              "speed": "slow",
+              "pass": true,
+              "fail": false,
+              "pending": false,
+              "context": null,
+              "code": "//for(n=0;n<5;n++){       //EXECUTING THIS TEST 5 TIMES !!!!!!!!!!!!!!\n        //commented the loop out as it prolongs the whole process too much. Instead called the second function 5 times on the comment line\n        \n        //launching the browser\n        let driver = await new Builder().forBrowser(\"firefox\").build();\n        //openning to the *Target website\n        await driver.get(\"http://jupiter.cloud.planittesting.com/\");\n        //From home page navigating to *Contact page\n        await driver.findElement(By.xpath(\"//*[@id='nav-contact']\")).click();\n        //----POPULATING MANDATORY FIELDS \n        const delay = ms => new Promise(resolve => setTimeout(resolve, ms)) /////////////////  ----------------WAIT\n        await delay(1000) /// waiting 1 second.\n        await driver.findElement(By.id(\"forename\")).sendKeys(\"Muhammet\");\n        await driver.actions().sendKeys(Key.chord(Key.TAB, Key.TAB,\"john.example@planit.net.au\")).perform();\n        await driver.actions().sendKeys(Key.chord(Key.TAB, Key.TAB,\"text area comment for Test 1\")).perform();               \n        //CLICKING ON SUBMIT BUTTON\n        await driver.findElement(By.linkText(\"Submit\")).click();\n        const delay2 = ms => new Promise(resolve => setTimeout(resolve, ms)) /////////////////  ----------------WAIT\n        await delay2(12000) /// waiting 8 seconds.\n        //VALIDATING SUCCESSFUL SUBMISSION MESSAGE\n        let exp = \"Thanks Muhammet, we appreciate your feedback.\"\n        let act = await driver.findElement(By.xpath(\"/html/body/div[2]/div/div\")).getText();\n        assert.strictEqual(act, exp);\n        \n        driver.quit();\n        //}",
+              "err": {},
+              "uuid": "de5c3062-beb2-432a-8e1b-9981af51fd2f",
+              "parentUUID": null,
+              "isHook": false,
+              "skipped": false
+            }
+          ],
+          "suites": [],
+          "passes": [
+            "de5c3062-beb2-432a-8e1b-9981af51fd2f"
+          ],
+          "failures": [],
+          "pending": [],
+          "skipped": [],
+          "duration": 22747,
+          "root": false,
+          "rootEmpty": false,
+          "_timeout": null
+        }
+      ],
+      "passes": [],
+      "failures": [],
+      "pending": [],
+      "skipped": [],
+      "duration": 0,
+      "root": true,
+      "rootEmpty": true,
+      "_timeout": 0
+    }
+  ],
+  "meta": {
+    "mocha": {
+      "version": "9.2.0"
+    },
+    "mochawesome": {
+      "options": {
+        "quiet": false,
+        "reportFilename": "testResults",
+        "saveHtml": true,
+        "saveJson": true,
+        "consoleReporter": "spec",
+        "useInlineDiffs": false,
+        "code": true
+      },
+      "version": "7.0.1"
+    },
+    "marge": {
+      "options": {
+        "reportDir": "C:/Users/navya/Desktop/PlanitTesting_Kaya/testReports",
+        "reportFilename": "testResults"
+      },
+      "version": "6.0.1"
+    }
+  }
+}
