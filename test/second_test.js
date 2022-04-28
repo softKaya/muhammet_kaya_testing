@@ -1,5 +1,5 @@
 const { Builder, By, Key, until } = require("selenium-webdriver");
-const ltCapabilities = require("../capabilities");
+//const ltCapabilities = require("../capabilities");
 const assert = require("assert");
 const Mochawesome = require("mochawesome");
 const should = require("chai").should();
