@@ -7,8 +7,7 @@ const should = require("chai").should();
 describe("Planit Testing KAYA", function () {
     it("Test case 2:", async function () {
 
-        //for(n=0;n<5;n++){       //EXECUTING THIS TEST 5 TIMES !!!!!!!!!!!!!!
-        //commented the loop out as it prolongs the whole process too much. Instead called the second function 5 times on the comment line
+        for(n=0;n<5;n++){       //  EXECUTING THIS TEST 5 TIMES !!!!!!!!!!!!!!
         
         //launching the browser
         let driver = await new Builder().forBrowser("firefox").build();
@@ -21,7 +20,7 @@ describe("Planit Testing KAYA", function () {
 
         //----POPULATING MANDATORY FIELDS 
         const delay = ms => new Promise(resolve => setTimeout(resolve, ms)) /////////////////  ----------------WAIT
-        await delay(1000) /// waiting 1 second.
+        await delay(1000); /// waiting 1 second.
         await driver.findElement(By.id("forename")).sendKeys("Muhammet");
         await driver.actions().sendKeys(Key.chord(Key.TAB, Key.TAB,"john.example@planit.net.au")).perform();
         await driver.actions().sendKeys(Key.chord(Key.TAB, Key.TAB,"text area comment for Test 1")).perform();               
@@ -29,8 +28,14 @@ describe("Planit Testing KAYA", function () {
         //CLICKING ON SUBMIT BUTTON
         await driver.findElement(By.linkText("Submit")).click();
 
-        const delay2 = ms => new Promise(resolve => setTimeout(resolve, ms)) /////////////////  ----------------WAIT
-        await delay2(12000) /// waiting 8 seconds.
+        //WAITING FOR THE NEXT PAGE
+        let NewPageLoaded;
+        do{
+            NewPageLoaded = (await driver.findElements(By.xpath("//div[@class='alert alert-success']"))).length;
+            const delay2 = ms => new Promise(resolve => setTimeout(resolve, ms)) /////////////////  ----------------WAIT
+            await delay2(1000);
+
+        }while(NewPageLoaded == 0);
 
         //VALIDATING SUCCESSFUL SUBMISSION MESSAGE
         let exp = "Thanks Muhammet, we appreciate your feedback."
@@ -38,6 +43,6 @@ describe("Planit Testing KAYA", function () {
         assert.strictEqual(act, exp);
         
         driver.quit();
-        //}
+        }
     })
 });
